@@ -1,11 +1,21 @@
-"""Satellite catalog interface and data models, designed around 128-character
-   satellite catalog summary entries documented and used by CelesTrak:
-      http://celestrak.com/satcat/satcat-format.asp.
+"""Satellite catalog microservice (based on src.service.Service) and supporting
+   data exchange models.
 """
 
-from kepler import service, data
+import bs4
+import re
+import requests
+from kepler import data
+from scrapese import celestrak
+from src import service, dxm
 
+@dxm.isdxm
 class Entry(object):
+    """Satellite catalog entry model, designed around the 128-character catalog
+       summary entries documented and used by CelesTrak:
+          http://celestrak.com/satcat/satcat-format.asp.
+    """
+    
     def __init__(self):
         self.launchYear = None
         self.launchNumber = None
@@ -73,13 +83,54 @@ class Entry(object):
         return entries
 
 class Service(service.Service):
+    """Provides a microservice supporting satellite catalog operations,
+       primarily basic fetch and refresh.
+    """
+    
     def __init__(self):
         self.sci = None
         with open(data.get_path('satcat.txt'), 'r') as f:
             self.sci = Entry.fromFile(f)
             
+    @service.isop
     def _root(self, url, args):
+        """Returns a newline-delimited list of all SSCIDs hosted by this
+           satellite catalog.
+        """
         res = ''
         for sc in self.sci:
             res += sc.catNum + '\n'
         return res
+        
+    @service.isop
+    def _refresh(self, url, args):
+        """Refreshes the current satellite catalog from CelesTrak. This is a
+           very data-intensive operation, and should rarely be invoked.
+        """
+        catpath = data.get_path('satcat.txt')
+        response = requests.get(celestrak.catUrl)
+        with open(catpath, 'wb') as f:
+            f.write(response.content)
+        with open(catpath, 'r') as f:
+            self.sci = Entry.fromFile(f)
+        return 'Refresh complete!'
+        
+    @service.isop
+    def tle(self, url, args):
+        """For a given SSCID, returns the most recent TLE pulled from CelesTrak.
+           Eventually, we should start caching these TLEs so Kelso doesn't get
+           too pissed. The URL request format will be something like:
+              http://domain.com/tle/12345
+              
+           Eventually, it may be worth considering several possible identifiers
+           to support by way of query string arguments. We may also want to fall
+           back to the SSCID listing when an SSCID is not provided.
+        """
+        m = re.match('^/tle/(\d{5})$', url.path)
+        if m:
+            url = celestrak.resolveTle(m.groups()[0])
+        else:
+            raise Exception('I need a five-digit SSCID')
+        req = requests.get(url)
+        bs = bs4.BeautifulSoup(req.text, 'html.parser')
+        return str(bs.pre.text).strip()

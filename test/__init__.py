@@ -14,6 +14,7 @@ else:
 		return isinstance(c, type) and issubclass(c, unittest.TestCase)
 
 __all__ = [
+    'satcat'
 ]
 
 def suite():
@@ -22,7 +23,7 @@ def suite():
 	"""
 	ts = unittest.TestSuite()
 	for test_module in __all__:
-		m = importlib.import_module("." + test_module)
+		m = importlib.import_module('kepler.test.' + test_module)
 		for n in dir(m):
 			c = getattr(m, n)
 			if is_test_case(c):

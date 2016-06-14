@@ -1,0 +1,136 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module kepler.satcat</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="kepler.html"><font color="#ffffff">kepler</font></a>.satcat</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:///C:/users/brian/projects/kepler/satcat.py">c:\users\brian\projects\kepler\satcat.py</a></font></td></tr></table>
+    <p><tt>Satellite&nbsp;catalog&nbsp;microservice&nbsp;(based&nbsp;on&nbsp;src.service.<a href="#Service">Service</a>)&nbsp;and&nbsp;supporting<br>
+data&nbsp;exchange&nbsp;models.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="bs4.html">bs4</a><br>
+<a href="scrapese.celestrak.html">scrapese.celestrak</a><br>
+</td><td width="25%" valign=top><a href="kepler.data.html">kepler.data</a><br>
+<a href="src.dxm.html">src.dxm</a><br>
+</td><td width="25%" valign=top><a href="re.html">re</a><br>
+<a href="requests.html">requests</a><br>
+</td><td width="25%" valign=top><a href="src.service.html">src.service</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="kepler.satcat.html#Entry">Entry</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="src.service.html#Service">src.service.Service</a>(<a href="__builtin__.html#object">__builtin__.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="kepler.satcat.html#Service">Service</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Entry">class <strong>Entry</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Satellite&nbsp;catalog&nbsp;entry&nbsp;model,&nbsp;designed&nbsp;around&nbsp;the&nbsp;128-character&nbsp;catalog<br>
+summary&nbsp;entries&nbsp;documented&nbsp;and&nbsp;used&nbsp;by&nbsp;CelesTrak:<br>
+&nbsp;&nbsp;&nbsp;<a href="http://celestrak.com/satcat/satcat-format.asp">http://celestrak.com/satcat/satcat-format.asp</a>.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Entry-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<hr>
+Static methods defined here:<br>
+<dl><dt><a name="Entry-fromFile"><strong>fromFile</strong></a>(hFile)</dt><dd><tt>Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;<a href="#Entry">Entry</a>&nbsp;objects&nbsp;derived&nbsp;by&nbsp;reading&nbsp;the&nbsp;given&nbsp;file<br>
+handle,&nbsp;which&nbsp;will&nbsp;be&nbsp;closed&nbsp;regardless&nbsp;of&nbsp;the&nbsp;operation's&nbsp;outcome.</tt></dd></dl>
+
+<dl><dt><a name="Entry-fromLine"><strong>fromLine</strong></a>(txt)</dt><dd><tt>Constructs&nbsp;and&nbsp;returns&nbsp;an&nbsp;<a href="#Entry">Entry</a>&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;by&nbsp;parsing&nbsp;the&nbsp;given&nbsp;line&nbsp;of<br>
+text</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>isdxm</strong> = True</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Service">class <strong>Service</strong></a>(<a href="src.service.html#Service">src.service.Service</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Provides&nbsp;a&nbsp;microservice&nbsp;supporting&nbsp;satellite&nbsp;catalog&nbsp;operations,<br>
+primarily&nbsp;basic&nbsp;fetch&nbsp;and&nbsp;refresh.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="kepler.satcat.html#Service">Service</a></dd>
+<dd><a href="src.service.html#Service">src.service.Service</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Service-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Service-tle"><strong>tle</strong></a>(self, url, args)</dt><dd><tt>For&nbsp;a&nbsp;given&nbsp;SSCID,&nbsp;returns&nbsp;the&nbsp;most&nbsp;recent&nbsp;TLE&nbsp;pulled&nbsp;from&nbsp;CelesTrak.<br>
+Eventually,&nbsp;we&nbsp;should&nbsp;start&nbsp;caching&nbsp;these&nbsp;TLEs&nbsp;so&nbsp;Kelso&nbsp;doesn't&nbsp;get<br>
+too&nbsp;pissed.&nbsp;The&nbsp;URL&nbsp;request&nbsp;format&nbsp;will&nbsp;be&nbsp;something&nbsp;like:<br>
+&nbsp;&nbsp;&nbsp;<a href="http://domain.com/tle/12345">http://domain.com/tle/12345</a><br>
+&nbsp;&nbsp;&nbsp;<br>
+Eventually,&nbsp;it&nbsp;may&nbsp;be&nbsp;worth&nbsp;considering&nbsp;several&nbsp;possible&nbsp;identifiers<br>
+to&nbsp;support&nbsp;by&nbsp;way&nbsp;of&nbsp;query&nbsp;string&nbsp;arguments.&nbsp;We&nbsp;may&nbsp;also&nbsp;want&nbsp;to&nbsp;fall<br>
+back&nbsp;to&nbsp;the&nbsp;SSCID&nbsp;listing&nbsp;when&nbsp;an&nbsp;SSCID&nbsp;is&nbsp;not&nbsp;provided.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="src.service.html#Service">src.service.Service</a>:<br>
+<dl><dt><a name="Service-app"><strong>app</strong></a>(self, env, res)</dt><dd><tt>Feed&nbsp;env&nbsp;parameters&nbsp;into&nbsp;urlparse&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;and&nbsp;query&nbsp;dictionary&nbsp;to&nbsp;1)<br>
+determine&nbsp;the&nbsp;appropriate&nbsp;operation&nbsp;to&nbsp;which&nbsp;those&nbsp;arguments&nbsp;will&nbsp;be<br>
+forwarded,&nbsp;and&nbsp;2)&nbsp;invoke&nbsp;that&nbsp;operation&nbsp;to&nbsp;construct&nbsp;a&nbsp;response.</tt></dd></dl>
+
+<dl><dt><a name="Service-getAllDxms"><strong>getAllDxms</strong></a>(self)</dt><dd><tt>Returns&nbsp;all&nbsp;data&nbsp;exchange&nbsp;model&nbsp;(DXM)&nbsp;classes&nbsp;defined&nbsp;in&nbsp;conjunction<br>
+with&nbsp;this&nbsp;service&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;by&nbsp;iterating&nbsp;over&nbsp;the&nbsp;contents&nbsp;of&nbsp;the&nbsp;module<br>
+where&nbsp;this&nbsp;class&nbsp;is&nbsp;defined&nbsp;and&nbsp;returning&nbsp;the&nbsp;names&nbsp;of&nbsp;those&nbsp;classes<br>
+that&nbsp;have&nbsp;the&nbsp;'isdxm'&nbsp;attribute&nbsp;(assigned&nbsp;by&nbsp;the&nbsp;@isdxm&nbsp;decorator).</tt></dd></dl>
+
+<dl><dt><a name="Service-getAllOps"><strong>getAllOps</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;names&nbsp;of&nbsp;all&nbsp;operations&nbsp;provided&nbsp;by&nbsp;this&nbsp;instance&nbsp;of&nbsp;the<br>
+<a href="#Service">Service</a>&nbsp;class,&nbsp;as&nbsp;determined&nbsp;by&nbsp;the&nbsp;@isop&nbsp;decorator&nbsp;(which&nbsp;adds&nbsp;the<br>
+isop&nbsp;method&nbsp;attribute).</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="src.service.html#Service">src.service.Service</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>

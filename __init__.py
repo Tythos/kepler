@@ -4,5 +4,6 @@
 __all__ = [
 	'data',
 	'docs',
-	'test'
+	'test',
+    'satcat'
 ]
