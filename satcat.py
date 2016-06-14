@@ -3,6 +3,8 @@
       http://celestrak.com/satcat/satcat-format.asp.
 """
 
+from kepler import service, data
+
 class Entry(object):
     def __init__(self):
         self.launchYear = None
@@ -69,3 +71,15 @@ class Entry(object):
                 nFailed += 1
         hFile.close()
         return entries
+
+class Service(service.Service):
+    def __init__(self):
+        self.sci = None
+        with open(data.get_path('satcat.txt'), 'r') as f:
+            self.sci = Entry.fromFile(f)
+            
+    def _root(self, url, args):
+        res = ''
+        for sc in self.sci:
+            res += sc.catNum + '\n'
+        return res
